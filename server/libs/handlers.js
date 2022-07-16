@@ -47,7 +47,7 @@ handlers._crud.post = async function (data, callback) {
       );
       await connection.commit();
 
-      callback(200, result.rowsAffected);
+      callback(200, { error: "User added to the DB"});
     } catch (err) {
       console.error(err);
       callback(500, { error: "Could not insert into the DB" });
@@ -113,7 +113,7 @@ handlers._crud.put = async function (data, callback) {
       );
       await connection.commit();
 
-      callback(200, result.rowsAffected);
+      callback(200, { error: "User updated"});
     } catch (err) {
       console.error(err);
       callback(500, { error: "Could not update the DB" });
@@ -139,7 +139,7 @@ handlers._crud.delete = async function (data, callback) {
       );
       await connection.commit();
 
-      callback(200, result.rowsAffected);
+      callback(200, { error: "User deleted"});
     } catch (err) {
       console.error(err);
       callback(500, { error: "Could not delete from the DB" });
