@@ -1,5 +1,5 @@
 // server/index.js
-
+const express = require("express");
 const StringDecoder = require("string_decoder").StringDecoder;
 const handlers = require("./server/libs/handlers.js");
 const HTTP = require("http");
@@ -10,7 +10,7 @@ const config = require("./server/libs/config.js");
 // Initialize the http server
 const httpServer = HTTP.createServer(function (req, res) {
   unifiedServer(req, res);
-});
+},);
 
 // Start the http server
 httpServer.listen(config.httpPort, () => {
@@ -45,9 +45,9 @@ const unifiedServer = (req, res) => {
 
     // choose the handler
     var chosenHandler =
-      typeof router[trimmedPath] !== "undefined" 
-      ? router[trimmedPath] 
-      : handlers.notFound;
+      typeof router[trimmedPath] !== "undefined"
+        ? router[trimmedPath]
+        : handlers.notFound;
 
     // Construct the data object to send to the handler
     var data = {
@@ -71,6 +71,17 @@ const unifiedServer = (req, res) => {
 
       // Return the response
       res.setHeader("Content-Type", "application/json");
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader(
+        "Access-Control-Allow-Methods",
+        "GET,POST,PUT,PATCH,DELETE"
+      );
+      res.setHeader(
+        "Access-Control-Allow-Methods",
+        "Content-Type",
+        "Authorization"
+      );
+
       res.writeHead(statusCode);
       res.end(payloadString);
 

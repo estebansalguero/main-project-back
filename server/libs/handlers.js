@@ -4,8 +4,6 @@
 const oracledb = require("oracledb");
 const fs = require("fs");
 const dbconfig = require("./dbconfig.js");
-const { Console } = require("console");
-const { type } = require("os");
 const libPath = "C:\\oracle\\instantclient_21_6";
 
 if (libPath && fs.existsSync(libPath)) {
@@ -158,7 +156,7 @@ handlers._crud.delete = async function (data, callback) {
 
 // Ping handler
 handlers.ping = function (data, callback) {
-  callback(200);
+  callback(200 ,  { status: "Ping success"});
 };
 
 // Not found handler
