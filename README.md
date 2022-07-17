@@ -38,8 +38,8 @@ CREATE A TABLE NAMED "PRUEBA":
  
   @TODO
  
-      Adding Support to MAC's oracle process
-      
-      Connecting the [front end](https://github.com/Gabrielmong/main-project-front) with the API
-      
-      Refactor the CRUD so it can be used for user transactions and enventually posts (reviews)
+Adding Support to MAC's oracle process
+
+~~Connecting the [front end](https://github.com/Gabrielmong/main-project-front) with the API~~
+
+Refactor the CRUD so it can be used for user transactions and enventually posts (reviews)
