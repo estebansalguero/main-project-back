@@ -16,14 +16,21 @@ This starts the server on the port 4000, you can change this on the config.js fi
 Using Oracle Databse, you need to install the [Oracle Intant Client](https://www.oracle.com/database/technologies/instant-client/downloads.html) and locate in C:\\oracle\\instantclient_21_6
 
 Open SQL Plus and create a user (VSCODE/ORACLE) and grant required permissions, if having trouble with this, run this command: 
-
-### 
+###
     ALTER SESSION SET "_ORACLE_SCRIPT"=TRUE;
+    
+    CREATE USER VSCODE IDENTIFIED BY ORACLE;
+    
+    GRANT DBA TO VSCODE;
+
+    SELECT PDB_NAME FROM DBA_PDBS; 
+
+    SHOW PARAMETER SERVICE_NAME; 
 
 And finally open the plugabble database:
 
 ###
-    ALTER PLUGGABLE DATABASE OPEN;
+    ALTER PLUGGABLE DATABASE [PBD Name] OPEN; 
 
 CREATE A TABLE NAMED "PRUEBA":
 
