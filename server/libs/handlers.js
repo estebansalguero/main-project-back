@@ -42,7 +42,7 @@ handlers._crud.post = async function (data, callback) {
     var connection;
     try {
       connection = await oracledb.getConnection(dbconfig);
-      var result = await connection.execute(
+      await connection.execute(
         `INSERT INTO PRUEBA (name, age) VALUES ('${name}', ${age})`
       );
       await connection.commit();
@@ -75,8 +75,11 @@ handlers._crud.get = async function (data, callback) {
         `SELECT * FROM PRUEBA WHERE name = '${name}'`
       );
       await connection.commit();
-
-      callback(200, result.rows);
+      if (result.rows.length > 0) {
+        callback(200, result.rows);
+      } else {
+        callback(404, { error: "User not found" });
+      }
     } catch (err) {
       console.error(err);
       callback(500, { error: "Could not get from the DB" });
@@ -108,7 +111,7 @@ handlers._crud.put = async function (data, callback) {
     var connection;
     try {
       connection = await oracledb.getConnection(dbconfig);
-      var result = await connection.execute(
+      await connection.execute(
         `UPDATE PRUEBA SET name = '${name}', age = ${age} WHERE id = ${id}`
       );
       await connection.commit();
@@ -134,7 +137,7 @@ handlers._crud.delete = async function (data, callback) {
     var connection;
     try {
       connection = await oracledb.getConnection(dbconfig);
-      var result = await connection.execute(
+      await connection.execute(
         `DELETE FROM PRUEBA WHERE id = ${id}`
       );
       await connection.commit();
@@ -156,7 +159,7 @@ handlers._crud.delete = async function (data, callback) {
 
 // Ping handler
 handlers.ping = function (data, callback) {
-  callback(200 ,  { status: "Ping success"});
+  callback(200 ,  { status: "Success!"});
 };
 
 // Not found handler
